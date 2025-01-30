@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.table-container {
+    margin: 20px;
+}
+.parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 20px;
+}
+.animal {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+.bold {
+    font-weight:900;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.italic-blue {
+    font-style: italic;
+    color: blue;
+}
+
+img {
+    width: 50%;
+    height: auto; 
+    
+}
+img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.animal-actions {
+    margin-top: 10px;
+}
+.animal-actions button {
+    margin: 5px;
+}
+
+#edit-form-content {
+    border: 1px solid black;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 10px;
+}
+
+#edit-form-content input {
+    height: 20px;
+    padding: 5px;
+}
+#edit-form-content button {
+    padding: 10px;
+    font-size: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgb(47, 42, 42);
+    color: white;
+}
+h3 {
+    color: rgb(46, 43, 40);
+}
