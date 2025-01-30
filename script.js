@@ -12,7 +12,7 @@ class AnimalTable {
   constructor(title, animals) {
     this.title = title;
     this.animals = animals;
-}
+  }
 
   generateTable() {
     let container = document.getElementById("tables");
@@ -20,37 +20,32 @@ class AnimalTable {
 
     this.animals.forEach((animal, index) => {
       tableHtml += `
-                        <div class="animal" id="animal-${index}">
-                            <h3>Species: ${animal.species}</h3>
-                            <h3 class="${
-                              this.title === "Big Cats"
-                                ? ""
-                                : this.title === "Big Fish"
-                                ? "italic-blue"
-                                : "bold"
-                            }">Name: ${animal.name}</h3>
-                            <h3>Size: ${animal.size}</h3>
-                            <h3>Location: ${animal.location}</h3>
-                            <img src="${animal.image}" alt="${animal.name}">
-                            <div class="animal-actions">
-                                <button onclick="editAnimal(${index}, '${
+        <div class="animal" id="animal-${index}">
+            <h3>Species: ${animal.species}</h3>
+            <h3 class="${
+              this.title === "Big Cats"
+                ? ""
+                : this.title === "Big Fish"
+                ? "italic-blue"
+                : "bold"
+            }">Name: ${animal.name}</h3>
+            <h3>Size: ${animal.size}</h3>
+            <h3>Location: ${animal.location}</h3>
+            <img src="${animal.image}" alt="${animal.name}">
+            <div class="animal-actions">
+                <button onclick="editAnimal(${index}, '${
         this.title
       }')">Edit</button>
-                                <button onclick="deleteAnimal(${index}, '${
+                <button onclick="deleteAnimal(${index}, '${
         this.title
       }')">Delete</button>
-                            </div>
-                        </div>
-                    `;
+            </div>
+        </div>
+      `;
     });
 
     tableHtml += `</div>`;
     container.innerHTML += tableHtml;
-  }
-
-  sortTable(field) {
-    this.animals.sort((a, b) => a.species - b.species);
-    this.updateTable();
   }
 
   updateTable() {
@@ -58,28 +53,28 @@ class AnimalTable {
     let tableHtml = "";
     this.animals.forEach((animal, index) => {
       tableHtml += `
-                        <div class="animal" id="animal-${index}">
-                            <h3>Species: ${animal.species}</h3>
-                            <h3 class="${
-                              this.title === "Big Cats"
-                                ? ""
-                                : this.title === "Dog"
-                                ? "bold"
-                                : "italic-blue"
-                            }">Name: ${animal.name}</h3>
-                            <h3>Size: ${animal.size}</h3>
-                            <h3>Location: ${animal.location}</h3>
-                            <img src="${animal.image}" alt="${animal.name}">
-                            <div class="animal-actions">
-                                <button onclick="editAnimal(${index}, '${
+        <div class="animal" id="animal-${index}">
+            <h3>Species: ${animal.species}</h3>
+            <h3 class="${
+              this.title === "Big Cats"
+                ? ""
+                : this.title === "Dog"
+                ? "bold"
+                : "italic-blue"
+            }">Name: ${animal.name}</h3>
+            <h3>Size: ${animal.size}</h3>
+            <h3>Location: ${animal.location}</h3>
+            <img src="${animal.image}" alt="${animal.name}">
+            <div class="animal-actions">
+                <button onclick="editAnimal(${index}, '${
         this.title
       }')">Edit</button>
-                                <button onclick="deleteAnimal(${index}, '${
+                <button onclick="deleteAnimal(${index}, '${
         this.title
       }')">Delete</button>
-                            </div>
-                        </div>
-                    `;
+            </div>
+        </div>
+      `;
     });
     tableDiv.innerHTML = tableHtml;
   }
@@ -192,30 +187,24 @@ let bigFish = [
 ];
 
 let bigCatsTable = new AnimalTable("Big Cats", bigCats);
-bigCatsTable.generateTable();
-
 let dogsTable = new AnimalTable("Dogs", dogs);
-dogsTable.generateTable();
-
 let bigFishTable = new AnimalTable("Big Fish", bigFish);
+
+bigCatsTable.generateTable();
+dogsTable.generateTable();
 bigFishTable.generateTable();
 
-function editAnimal(index, title) {
-  const animal =
-    title === "Big Cats"
-      ? bigCats[index]
-      : title === "Big Fish"
-      ? bigFish[index]
-      : dogs[index];
 
+function editAnimal(index, tableTitle) {
+  let table =
+    tableTitle === "Big Cats" ? bigCats : tableTitle === "Dog" ? dogs : bigFish;
+  let animal = table[index];
   document.getElementById("species").value = animal.species;
   document.getElementById("name").value = animal.name;
   document.getElementById("size").value = animal.size;
   document.getElementById("location").value = animal.location;
   document.getElementById("image").value = animal.image;
 
-  const form = document.getElementById("edit-form");
-  form.style.display = "block";
 
   document.getElementById("edit-form-content").onsubmit = function (event) {
     event.preventDefault();
@@ -225,21 +214,22 @@ function editAnimal(index, title) {
     animal.location = document.getElementById("location").value;
     animal.image = document.getElementById("image").value;
 
-    bigCatsTable.updateTable();
-    dogsTable.updateTable();
-    form.style.display = "none";
+    tableTitle === "Big Cats"
+      ? bigCatsTable.updateTable()
+      : tableTitle === "Dog"
+      ? dogsTable.updateTable()
+      : bigFishTable.updateTable();
   };
 }
 
-function deleteAnimal(index, title) {
-  if (title === "Big Cats") {
-    bigCats.splice(index, 1);
-    bigCatsTable.updateTable();
-  } else if (title === "Big Fish") {
-    bigFish.splice(index, 1);
-    bigFishTable.updateTable();
-  } else {
-    dogs.splice(index, 1);
-    dogsTable.updateTable();
-  }
+
+function deleteAnimal(index, tableTitle) {
+  let table =
+    tableTitle === "Big Cats" ? bigCats : tableTitle === "Dog" ? dogs : bigFish;
+  table.splice(index, 1);
+  tableTitle === "Big Cats"
+    ? bigCatsTable.updateTable()
+    : tableTitle === "Dog"
+    ? dogsTable.updateTable()
+    : bigFishTable.updateTable();
 }
