@@ -22,13 +22,13 @@ class AnimalTable {
       tableHtml += `
         <div class="animal" id="animal-${index}">
             <h3>Species: ${animal.species}</h3>
-            <h3 class="${
+            <h3 >Name:<span class="${
               this.title === "Big Cats"
                 ? ""
                 : this.title === "Big Fish"
                 ? "italic-blue"
                 : "bold"
-            }">Name: ${animal.name}</h3>
+            }">${animal.name}</span> </h3>
             <h3>Size: ${animal.size}</h3>
             <h3>Location: ${animal.location}</h3>
             <img src="${animal.image}" alt="${animal.name}">

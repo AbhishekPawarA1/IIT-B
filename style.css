@@ -1,25 +1,55 @@
+
 body {
     font-family: Arial, sans-serif;
+    
+    background: linear-gradient(to right, #5fe96d, #d4fcf8); /* Green to Light Blue */
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
 }
 .table-container {
     margin: 20px;
 }
+.back-img {
+    width: 100%;
+}
+
+
 .parent {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    gap: 10px;
+    padding: 10px;
+    
 }
 .animal {
     border: 1px solid black;
     padding: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    position: relative;
+    
+}
+
+
+.main {
+    margin-top: 100px;
 }
 .bold {
     font-weight:900;
     font-family:Arial, Helvetica, sans-serif;
 }
+
 .italic-blue {
     font-style: italic;
     color: blue;
@@ -45,20 +75,42 @@ img:hover {
 
 #edit-form-content {
     border: 1px solid black;
-    width: max-content;
+    width: 50%;
     display: flex;
     flex-direction: column;
     margin: auto;
     padding: 10px;
+    z-index: 99;
+    /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+
 }
 
-#edit-form-content input {
+#edit-form-content input , button {
     height: 20px;
-    padding: 5px;
+    padding: 10px 10px;
 }
-#edit-form-content button {
-    padding: 10px;
-    font-size: 15px;
+#edit-form-content  button {
+    height: fit-content;
+    padding: auto;
+    margin: auto;
+}
+button {
+    height: fit-content;
+    padding: auto;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 15px;
 }
 
 button:hover {
